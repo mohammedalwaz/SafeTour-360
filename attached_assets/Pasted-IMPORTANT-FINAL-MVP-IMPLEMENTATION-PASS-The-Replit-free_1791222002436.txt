@@ -1,0 +1,523 @@
+IMPORTANT — FINAL MVP IMPLEMENTATION PASS
+
+The Replit free-plan usage is nearly exhausted, so I need you to use the remaining available Agent budget efficiently.
+
+Do NOT stop after another small phase.
+Do NOT ask me for approval between phases.
+Do NOT create a long explanation before implementing.
+
+Complete the maximum amount of a WORKING SafeTour 360 MVP in this single implementation pass.
+
+The goal is NOT to implement every advanced feature perfectly.
+
+The goal is to have a coherent, working, demonstrable college project.
+
+CURRENT STATE:
+Phase 1 foundation has been implemented successfully.
+
+Phase 2 authentication is currently being implemented. Finish/fix it first.
+
+IMPORTANT:
+Use the existing SafeTour 360 architecture and current project structure.
+Do NOT restart the project.
+Do NOT import the old RakshaSetu project.
+Do NOT copy its code.
+Do NOT implement fake functionality that pretends something succeeded when it did not.
+
+PRIORITY ORDER:
+
+==================================================
+PRIORITY 1 — FINISH AUTHENTICATION
+==================================================
+
+Complete and verify:
+
+- Tourist registration
+- Tourist login
+- Admin login
+- JWT authentication
+- bcrypt password hashing
+- GET /api/auth/me
+- role-based authorization
+- protected tourist routes
+- protected admin routes
+- logout
+- frontend auth state
+- login page
+- registration page
+- tourist dashboard
+- admin dashboard
+
+Public registration must NEVER allow a user to select admin role.
+
+Create a safe development/admin seed mechanism if required.
+
+If MongoDB is not configured, do not fake database success.
+
+==================================================
+PRIORITY 2 — MONGODB DATA MODELS
+==================================================
+
+Create the minimum useful models:
+
+User
+TouristProfile
+Location
+Geofence
+SOSAlert
+Incident
+DigitalId
+RiskAssessment
+
+Keep schemas simple.
+
+Use MongoDB/Mongoose.
+
+Do not create unnecessary models.
+
+==================================================
+PRIORITY 3 — TOURIST DASHBOARD
+==================================================
+
+Create a polished responsive tourist dashboard.
+
+It should show:
+
+- Welcome message
+- Current safety/risk level
+- Digital Tourist ID
+- Current location status
+- Nearby zone status
+- SOS button
+- Report incident button
+- Recent alerts/incidents
+- Location sharing toggle
+
+Use a clean modern UI.
+
+Theme:
+- black
+- white
+- light pink
+
+Make it work well on a phone-sized browser.
+
+==================================================
+PRIORITY 4 — ADMIN DASHBOARD
+==================================================
+
+Create a responsive admin dashboard designed primarily for laptop/desktop.
+
+Show:
+
+- Total tourists
+- Active SOS alerts
+- Open incidents
+- High-risk tourists/locations
+- Recent incidents
+- SOS alert queue
+- Tourist locations on a map if practical
+
+Admin must be protected by backend role authorization.
+
+Do NOT rely only on frontend route protection.
+
+==================================================
+PRIORITY 5 — GPS + MAP
+==================================================
+
+Implement browser-based GPS.
+
+Tourist can:
+
+- request location permission
+- get current latitude/longitude
+- send current location to backend
+- pause location sharing
+
+Use:
+
+Leaflet + OpenStreetMap
+
+Show the tourist's current position on a map.
+
+Be honest about browser limitations:
+foreground location tracking is sufficient for this college MVP.
+
+Do not claim continuous background tracking.
+
+==================================================
+PRIORITY 6 — GEOFENCING
+==================================================
+
+Implement simple radius-based geofencing.
+
+Admin can create zones with:
+
+- name
+- type: safe/danger
+- latitude
+- longitude
+- radius in meters
+- severity
+
+When tourist location is received:
+
+Calculate distance between tourist and zone.
+
+If tourist enters a danger zone:
+
+- show a warning to tourist
+- calculate increased risk
+- create an appropriate notification/alert
+- make the information visible to admin where practical
+
+Use a simple reliable distance calculation.
+
+Do NOT implement complex polygon GIS.
+
+==================================================
+PRIORITY 7 — SOS
+==================================================
+
+Implement a REAL database-backed SOS flow.
+
+Tourist presses SOS.
+
+Show a confirmation before sending.
+
+On confirmation:
+
+- send latest available location
+- send tourist ID
+- timestamp the request
+- create SOSAlert in MongoDB
+- return a real alert ID
+- show actual success/failure
+- show current SOS status
+
+Statuses:
+
+pending
+acknowledged
+responding
+resolved
+
+Admin can:
+
+- see SOS alerts
+- open an alert
+- acknowledge
+- mark responding
+- resolve
+
+Do NOT display "SOS sent successfully" unless the backend actually confirms creation.
+
+==================================================
+PRIORITY 8 — INCIDENT REPORTING
+==================================================
+
+Tourist can report:
+
+- accident
+- medical
+- lost tourist
+- unsafe area
+- suspicious activity
+- natural disaster
+- other
+
+Fields:
+
+- category
+- description
+- location
+- severity
+- timestamp
+
+Admin can:
+
+- view incidents
+- update status
+
+Statuses:
+
+new
+under_review
+resolved
+
+Persist everything in MongoDB.
+
+==================================================
+PRIORITY 9 — EXPLAINABLE RISK SCORE
+==================================================
+
+Implement a simple rules-based risk engine.
+
+Do NOT use an external AI API.
+
+Do NOT build a fake chatbot.
+
+Calculate a score from 0–100 using available data such as:
+
+- danger zone
+- zone severity
+- recent nearby incidents
+- incident severity
+
+Return:
+
+score
+risk level
+reasons
+
+Risk levels:
+
+LOW
+MEDIUM
+HIGH
+
+Example explanation:
+
+"High risk because the tourist is inside a danger zone and there are recent high-severity incidents nearby."
+
+Display this on the tourist dashboard and admin dashboard.
+
+Call it:
+
+"AI-Assisted Safety Risk Assessment"
+
+Explain in documentation that it is an explainable rules-based risk engine, not a trained ML model.
+
+==================================================
+PRIORITY 10 — DIGITAL TOURIST ID + QR
+==================================================
+
+Implement a secure Digital Tourist ID.
+
+Example format:
+
+ST-2026-00001
+
+Create a QR code containing only an opaque verification token.
+
+Do NOT put:
+
+- password
+- location
+- sensitive personal information
+
+inside the QR.
+
+Store a secure hash of the token.
+
+Support:
+
+- expiry
+- revocation
+- verification
+
+Create:
+
+POST /api/digital-id/verify
+
+Return only limited verification information.
+
+Do NOT claim this is blockchain.
+
+==================================================
+PRIORITY 11 — SOCKET.IO
+==================================================
+
+If enough implementation budget remains after the database-backed workflows work:
+
+Add Socket.IO for:
+
+- new SOS notification
+- incident status update
+- zone warning
+- admin dashboard refresh
+
+IMPORTANT:
+
+REST + MongoDB must remain the source of truth.
+
+Socket.IO is only for real-time notification.
+
+Do not make the project dependent on in-memory alert storage.
+
+If Socket.IO becomes unreliable, prioritize the REST/database workflow instead.
+
+==================================================
+PRIORITY 12 — BASIC ANALYTICS
+==================================================
+
+Add simple admin statistics:
+
+- total tourists
+- total SOS alerts
+- active SOS alerts
+- total incidents
+- open incidents
+- high-risk count
+- danger-zone events
+
+Use simple cards/charts if easy.
+
+Do not spend excessive implementation time on advanced charts.
+
+==================================================
+PRIORITY 13 — UI POLISH
+==================================================
+
+Make the application look like a real college project rather than a plain developer demo.
+
+Theme:
+
+black + white + light pink
+
+Use:
+
+- large headings
+- clean cards
+- clear buttons
+- responsive layout
+- good spacing
+- clear SOS emergency styling
+- mobile-friendly navigation
+- desktop admin sidebar/navigation if practical
+
+Keep it professional but simple.
+
+==================================================
+PRIORITY 14 — SECURITY
+==================================================
+
+Ensure:
+
+- passwords are hashed
+- JWT secret comes from environment variables
+- MongoDB URI comes from environment variables
+- no secrets are committed
+- admin routes require admin authorization
+- tourist routes require authentication
+- request validation exists for important endpoints
+- sensitive information is not exposed through QR verification
+- CORS is configured
+- errors do not expose secrets
+
+==================================================
+PRIORITY 15 — DEPLOYMENT READINESS
+==================================================
+
+Prepare the project for:
+
+Frontend:
+Vercel
+
+Backend:
+Render
+
+Database:
+MongoDB Atlas
+
+Use environment variables.
+
+Make API URLs configurable.
+
+Do not hardcode localhost URLs into production code.
+
+==================================================
+PRIORITY 16 — DOCUMENTATION
+==================================================
+
+Only create concise useful documentation.
+
+Update README.md with:
+
+- project overview
+- features
+- technology stack
+- local setup
+- environment variables
+- how to run frontend
+- how to run backend
+- demo accounts/seed instructions if applicable
+- deployment notes
+
+Also create concise:
+
+ARCHITECTURE.md
+API.md
+DEMO_GUIDE.md
+SIH_25002_MAPPING.md
+
+Do NOT spend excessive time writing documentation.
+
+==================================================
+VERY IMPORTANT — TIME/BUDGET RULE
+==================================================
+
+The Replit Agent free-plan budget is nearly exhausted.
+
+Therefore:
+
+1. Prioritize working functionality over documentation.
+2. Prioritize end-to-end demo flow over advanced features.
+3. Do not spend large amounts of time on tests that don't affect the demo.
+4. Do not add unnecessary dependencies.
+5. Do not redesign the architecture.
+6. Do not restart the project.
+7. Do not wait for my approval between features.
+8. Fix errors immediately when encountered.
+9. If a feature cannot be completed reliably, simplify it rather than leaving broken code.
+10. Never create fake/mock success for important operations.
+11. Keep the application runnable at the end.
+
+==================================================
+FINAL DEMO WORKFLOW
+==================================================
+
+The finished MVP should support this demonstration:
+
+PHONE:
+
+1. Open SafeTour 360
+2. Tourist logs in
+3. See tourist dashboard
+4. View Digital Tourist ID + QR
+5. Allow location
+6. See current location
+7. Enter/ simulate a danger zone
+8. See risk warning
+9. Press SOS
+10. SOS is saved to MongoDB
+
+LAPTOP:
+
+11. Admin logs in
+12. Admin dashboard shows the SOS
+13. Admin sees tourist/location/incident details
+14. Admin acknowledges SOS
+15. Admin marks responding
+16. Admin resolves SOS
+
+Then demonstrate:
+
+17. Tourist submits an incident
+18. Admin sees the incident
+19. Risk score/reasons are displayed
+20. Digital ID QR can be verified
+21. Basic analytics are visible
+
+At the end:
+
+- Run TypeScript checks
+- Run production build
+- Start frontend/backend
+- Fix critical errors
+- Confirm the main demo workflow works
+
+DO NOT START ANOTHER PHASE AFTER THIS.
+
+Use the remaining Agent budget to leave SafeTour 360 in the most complete WORKING state possible.
