@@ -9,4 +9,6 @@ export const env = {
   port: Number.isInteger(parsedPort) && parsedPort > 0 ? parsedPort : 8000,
   frontendUrl: process.env.FRONTEND_URL?.trim() || "http://localhost:5000",
   mongodbUri: process.env.MONGODB_URI?.trim() || "",
+  jwtSecret:
+    process.env.JWT_SECRET?.trim() || process.env.SESSION_SECRET?.trim() || "",
 };

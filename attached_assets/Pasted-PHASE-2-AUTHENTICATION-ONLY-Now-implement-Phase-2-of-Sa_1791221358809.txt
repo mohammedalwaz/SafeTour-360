@@ -1,0 +1,143 @@
+PHASE 2 — AUTHENTICATION ONLY
+
+Now implement Phase 2 of SafeTour 360.
+
+Do NOT implement GPS, geofencing, SOS, incidents, AI, Digital ID, QR verification, maps, analytics, or blockchain yet.
+
+Implement only authentication and user roles.
+
+Requirements:
+
+1. DATABASE
+Create a User model using MongoDB/Mongoose with:
+- name
+- email
+- phone (optional)
+- passwordHash
+- role: "tourist" or "admin"
+- isActive
+- createdAt
+- updatedAt
+
+Email must be unique.
+
+Never store plain-text passwords.
+
+2. REGISTRATION
+Create:
+POST /api/auth/register
+
+A tourist should be able to register with:
+- name
+- email
+- password
+- optional phone
+
+IMPORTANT:
+Public registration must ALWAYS create a tourist account.
+
+Do NOT allow a user to choose "admin" during public registration.
+
+3. LOGIN
+Create:
+POST /api/auth/login
+
+Verify:
+- email
+- password
+- account status
+
+Return a JWT containing the user's ID and role.
+
+Use a JWT secret from an environment variable.
+Never hardcode the secret.
+
+4. AUTHENTICATION MIDDLEWARE
+Create middleware that:
+- reads the JWT from the Authorization header
+- verifies the token
+- identifies the user
+- rejects invalid/expired tokens
+
+Create role middleware so protected routes can require:
+- tourist
+- admin
+
+5. CURRENT USER
+Create:
+GET /api/auth/me
+
+It should return the authenticated user's basic information.
+
+Do not return the password hash.
+
+6. LOGOUT
+Since JWT authentication is stateless, implement logout on the frontend by removing the stored token.
+
+Do not create unnecessary server-side sessions.
+
+7. ADMIN ACCOUNT
+Do NOT create a public admin registration route.
+
+For development/demo purposes, create a safe method for creating the first admin account, such as a seed script or documented server-side command.
+
+The admin credentials must NOT be hardcoded into application source code.
+
+8. FRONTEND
+Create:
+- Login page
+- Tourist registration page
+- Basic authenticated tourist page
+- Basic admin page
+
+Add frontend routing.
+
+After login:
+- tourist → tourist area
+- admin → admin area
+
+The frontend must not be treated as the security layer.
+The backend must enforce roles.
+
+9. AUTH STATE
+Create a simple authentication state/context or equivalent clean solution.
+
+Handle:
+- logged in
+- logged out
+- loading
+- invalid/expired token
+
+10. SECURITY
+- Hash passwords with bcrypt.
+- Validate input.
+- Do not expose password hashes.
+- Do not put JWT secrets in source code.
+- Use environment variables.
+- Do not allow public users to create admin accounts.
+
+11. TESTING
+After implementation:
+- run TypeScript checks
+- run production build
+- test tourist registration
+- test tourist login
+- test /api/auth/me
+- test invalid password
+- test protected route without token
+- test admin role protection
+- verify passwords are stored as hashes
+
+If MongoDB is not configured, do not fake successful database operations. Keep the application startup behavior graceful and clearly report that database configuration is required.
+
+IMPORTANT:
+Stay strictly within Phase 2.
+Do not start Phase 3 after authentication is complete.
+
+When finished, tell me:
+1. Files created/modified
+2. API endpoints implemented
+3. How authentication works
+4. How the admin account is created
+5. Tests performed and their results
+6. Any remaining issues

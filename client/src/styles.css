@@ -78,6 +78,30 @@ a {
   letter-spacing: 0.13em;
 }
 
+.home-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.home-nav a {
+  text-decoration: none;
+}
+
+.home-nav a:hover,
+.auth-footer a:hover {
+  color: #126e70;
+}
+
+.home-nav-primary {
+  padding: 10px 14px;
+  border: 1px solid rgb(18 110 112 / 22%);
+  border-radius: 9px;
+  color: #126e70;
+}
+
 .hero {
   position: relative;
   display: flex;
@@ -249,6 +273,288 @@ a {
   font-weight: 650;
 }
 
+.auth-page,
+.account-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 86% 12%, rgb(43 160 153 / 11%), transparent 28rem),
+    linear-gradient(135deg, #f7f9f8 0%, #eef4f5 100%);
+}
+
+.auth-topbar,
+.account-topbar {
+  display: flex;
+  width: min(1160px, calc(100% - 64px));
+  min-height: 86px;
+  align-items: center;
+  justify-content: space-between;
+  margin-inline: auto;
+  border-bottom: 1px solid rgb(23 43 67 / 9%);
+}
+
+.auth-topbar-note {
+  color: #66807f;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.auth-content {
+  display: grid;
+  min-height: calc(100vh - 86px);
+  place-items: center;
+  padding: 54px 20px;
+}
+
+.auth-panel {
+  width: min(100%, 460px);
+  padding: clamp(26px, 6vw, 44px);
+  border: 1px solid rgb(23 43 67 / 9%);
+  border-radius: 18px;
+  background: rgb(255 255 255 / 82%);
+  box-shadow: 0 24px 72px rgb(23 43 67 / 7%);
+}
+
+.auth-panel h1,
+.auth-state-screen h1 {
+  margin: 0;
+  color: #172b43;
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  letter-spacing: -0.06em;
+  line-height: 1.08;
+}
+
+.auth-description {
+  margin: 12px 0 27px;
+  color: #73858f;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.auth-form {
+  display: grid;
+  gap: 17px;
+}
+
+.form-field {
+  display: grid;
+  gap: 7px;
+  color: #355269;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #d8e2e4;
+  border-radius: 9px;
+  outline: none;
+  background: #fff;
+  color: #172b43;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 450;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.form-field input:focus {
+  border-color: #268486;
+  box-shadow: 0 0 0 3px rgb(38 132 134 / 13%);
+}
+
+.form-field small,
+.form-optional {
+  color: #829199;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.form-optional {
+  margin-left: 5px;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 43px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 140ms ease, transform 140ms ease;
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.button-primary {
+  background: #126e70;
+  color: #fff;
+}
+
+.button-primary:hover:not(:disabled) {
+  background: #0e5e60;
+  transform: translateY(-1px);
+}
+
+.button-quiet {
+  border-color: #d8e2e4;
+  background: #fff;
+  color: #355269;
+}
+
+.button-quiet:hover {
+  background: #f3f7f7;
+}
+
+.auth-footer {
+  margin-top: 23px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(23 43 67 / 9%);
+  color: #73858f;
+  font-size: 12px;
+}
+
+.auth-footer a {
+  color: #126e70;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.form-helper {
+  margin: -9px 0 20px;
+  color: #6c7f88;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.form-error,
+.form-notice {
+  margin: 0 0 17px;
+  padding: 11px 12px;
+  border: 1px solid;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.form-error {
+  border-color: #e6c2bb;
+  background: #fff6f3;
+  color: #8c382e;
+}
+
+.form-notice {
+  border-color: #c5ded6;
+  background: #f1faf6;
+  color: #27664e;
+}
+
+.auth-state-screen {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+}
+
+.auth-state-screen h1 {
+  max-width: 560px;
+}
+
+.auth-state-screen > p:not(.eyebrow) {
+  max-width: 520px;
+  color: #73858f;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.loading-indicator {
+  width: 28px;
+  aspect-ratio: 1;
+  border: 3px solid #d8e6e5;
+  border-top-color: #126e70;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.account-topbar {
+  border-bottom-color: rgb(23 43 67 / 9%);
+}
+
+.account-content {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-block: clamp(64px, 12vh, 120px);
+}
+
+.account-content h1 {
+  margin: 0;
+  color: #172b43;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.account-welcome {
+  margin: 18px 0 30px;
+  color: #73858f;
+}
+
+.account-welcome strong {
+  color: #355269;
+}
+
+.account-panel {
+  padding: clamp(22px, 5vw, 34px);
+  border: 1px solid rgb(23 43 67 / 9%);
+  border-radius: 16px;
+  background: rgb(255 255 255 / 84%);
+  box-shadow: 0 20px 56px rgb(23 43 67 / 6%);
+}
+
+.account-role {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #e8f3f1;
+  color: #126e70;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-panel > p:not(.account-helper) {
+  color: #355269;
+  font-size: 14px;
+}
+
+.account-helper {
+  max-width: 540px;
+  margin-top: 24px;
+  color: #73858f;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
 @media (max-width: 720px) {
   .topbar,
   .footer,
@@ -263,6 +569,32 @@ a {
   .phase-label {
     font-size: 9px;
     letter-spacing: 0.09em;
+  }
+
+  .home-nav {
+    gap: 13px;
+    font-size: 12px;
+  }
+
+  .home-nav-primary {
+    padding: 8px 10px;
+  }
+
+  .auth-topbar,
+  .account-topbar {
+    width: calc(100% - 40px);
+    min-height: 76px;
+  }
+
+  .auth-topbar-note {
+    font-size: 8px;
+    letter-spacing: 0.07em;
+  }
+
+  .auth-content {
+    min-height: calc(100vh - 76px);
+    align-items: start;
+    padding-top: 32px;
   }
 
   .hero {
@@ -305,6 +637,11 @@ a {
   .phase-label {
     max-width: 105px;
     text-align: right;
+  }
+
+  .home-nav {
+    gap: 9px;
+    font-size: 11px;
   }
 
   .footer {

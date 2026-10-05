@@ -1,14 +1,21 @@
+import { Link } from "react-router-dom";
+
 export default function HomePage() {
   return (
     <div className="page-shell">
       <header className="topbar">
-        <a className="brand" href="/" aria-label="SafeTour 360 home">
+        <Link className="brand" to="/" aria-label="SafeTour 360 home">
           <span className="brand-mark" aria-hidden="true">
             S
           </span>
           <span>SafeTour 360</span>
-        </a>
-        <span className="phase-label">PHASE 1 · FOUNDATION</span>
+        </Link>
+        <nav className="home-nav" aria-label="Account">
+          <Link to="/login">Log in</Link>
+          <Link className="home-nav-primary" to="/register">
+            Create account
+          </Link>
+        </nav>
       </header>
 
       <main className="hero">
@@ -39,7 +46,7 @@ export default function HomePage() {
         <span>Designed for mobile and desktop</span>
         <span className="footer-indicator">
           <span className="indicator-dot" />
-          Project foundation
+          Phase 2 · Authentication
         </span>
       </footer>
     </div>

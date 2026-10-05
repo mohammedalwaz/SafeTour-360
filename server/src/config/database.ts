@@ -34,3 +34,7 @@ export async function connectToDatabase(): Promise<void> {
 export function getDatabaseStatus(): DatabaseStatus {
   return databaseStatus;
 }
+
+export function isDatabaseConnected(): boolean {
+  return mongoose.connection.readyState === 1;
+}

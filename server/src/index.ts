@@ -5,6 +5,12 @@ import { env } from "./config/env";
 async function startServer(): Promise<void> {
   await connectToDatabase();
 
+  if (!env.jwtSecret) {
+    console.warn(
+      "JWT_SECRET is not configured; authentication endpoints will be unavailable.",
+    );
+  }
+
   app.listen(env.port, "0.0.0.0", () => {
     console.info(`SafeTour 360 API listening on port ${env.port}.`);
   });
