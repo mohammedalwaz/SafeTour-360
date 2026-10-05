@@ -1,0 +1,31 @@
+{
+  "name": "safetour-360",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:client": "vite --config client/vite.config.ts --host 0.0.0.0 --port 5000 client",
+    "build:client": "tsc --noEmit -p client/tsconfig.json && vite build --config client/vite.config.ts client",
+    "dev:server": "tsx watch server/src/index.ts",
+    "check:server": "tsc --noEmit -p server/tsconfig.json",
+    "check": "npm run build:client && npm run check:server"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "mongoose": "^9.11.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2"
+  }
+}
