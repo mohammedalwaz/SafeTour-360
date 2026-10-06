@@ -3,6 +3,7 @@ import type { RequestHandler } from "express";
 import jwt, { type SignOptions } from "jsonwebtoken";
 import { isDatabaseConnected } from "../../config/database";
 import { env } from "../../config/env";
+import { TouristProfileModel } from "../../models/TouristProfile";
 import { UserModel } from "../../models/User";
 import { toPublicUser } from "./auth.utils";
 
@@ -107,6 +108,11 @@ export const register: RequestHandler = async (request, response, next) => {
       role: "tourist",
       isActive: true,
     });
+    await TouristProfileModel.findOneAndUpdate(
+      { userId: user._id },
+      { $setOnInsert: { userId: user._id } },
+      { upsert: true },
+    );
 
     response.status(201).json({
       message: "Tourist account created. You can now log in.",

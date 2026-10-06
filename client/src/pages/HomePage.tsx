@@ -26,7 +26,9 @@ export default function HomePage() {
             Intelligent Tourist Safety &amp; Incident Response Platform
           </p>
           <p className="supporting-copy">
-            A responsive foundation for safer, more informed journeys.
+            Register as a tourist, share your live location, send SOS alerts,
+            report incidents, and carry a verifiable Digital ID QR. Risk scores
+            are rules-based explanations — not machine learning or blockchain.
           </p>
         </div>
 
@@ -46,7 +48,7 @@ export default function HomePage() {
         <span>Designed for mobile and desktop</span>
         <span className="footer-indicator">
           <span className="indicator-dot" />
-          Phase 2 · Authentication
+          Phase 3 · Safety MVP
         </span>
       </footer>
     </div>

@@ -7,7 +7,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { authApi, AuthApiError } from "../../services/auth-api";
+import { authApi } from "../../services/auth-api";
+import { ApiError } from "../../services/http";
 import type {
   LoginInput,
   PublicUser,
@@ -61,7 +62,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!isCurrent) return;
 
         if (
-          requestError instanceof AuthApiError &&
+          requestError instanceof ApiError &&
           requestError.status === 401
         ) {
           window.localStorage.removeItem(TOKEN_STORAGE_KEY);

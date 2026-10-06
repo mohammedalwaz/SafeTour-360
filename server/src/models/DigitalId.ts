@@ -22,7 +22,7 @@ const digitalIdSchema = new Schema<DigitalIdRecord>(
     idNumber: { type: String, unique: true, required: true, index: true },
     verificationTokenHash: { type: String, unique: true, sparse: true, select: false },
     tokenExpiresAt: Date,
-    isRevoked: { type: Boolean, default: true, required: true },
+    isRevoked: { type: Boolean, default: false, required: true },
     revokedAt: Date,
   },
   { timestamps: true, versionKey: false },

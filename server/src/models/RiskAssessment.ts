@@ -1,6 +1,6 @@
 import { Schema, Types, model } from "mongoose";
 
-export const RISK_LEVELS = ["LOW", "MEDIUM", "HIGH"] as const;
+export const RISK_LEVELS = ["LOW", "MEDIUM", "HIGH", "CRITICAL"] as const;
 export type RiskLevel = (typeof RISK_LEVELS)[number];
 
 export interface RiskAssessmentRecord {
@@ -8,8 +8,9 @@ export interface RiskAssessmentRecord {
   score: number;
   level: RiskLevel;
   reasons: string[];
-  latitude: number;
-  longitude: number;
+  latitude?: number;
+  longitude?: number;
+  locationAvailable: boolean;
   insideDangerZone: boolean;
   dangerZoneEntered: boolean;
   assessedAt: Date;
@@ -21,8 +22,9 @@ const riskAssessmentSchema = new Schema<RiskAssessmentRecord>(
     score: { type: Number, required: true, min: 0, max: 100 },
     level: { type: String, enum: RISK_LEVELS, required: true },
     reasons: { type: [String], default: [] },
-    latitude: { type: Number, required: true, min: -90, max: 90 },
-    longitude: { type: Number, required: true, min: -180, max: 180 },
+    latitude: { type: Number, min: -90, max: 90 },
+    longitude: { type: Number, min: -180, max: 180 },
+    locationAvailable: { type: Boolean, default: false, required: true },
     insideDangerZone: { type: Boolean, default: false },
     dangerZoneEntered: { type: Boolean, default: false },
     assessedAt: { type: Date, required: true, default: Date.now },

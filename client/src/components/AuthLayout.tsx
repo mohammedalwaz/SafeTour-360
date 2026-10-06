@@ -25,7 +25,7 @@ export default function AuthLayout({
           </span>
           <span>SafeTour 360</span>
         </Link>
-        <span className="auth-topbar-note">PHASE 2 · AUTHENTICATION</span>
+        <span className="auth-topbar-note">SECURE ACCESS</span>
       </header>
 
       <section className="auth-content">

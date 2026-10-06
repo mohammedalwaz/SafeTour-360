@@ -1,7 +1,7 @@
 import { Schema, Types, model } from "mongoose";
 
 export const SOS_STATUSES = [
-  "pending",
+  "active",
   "acknowledged",
   "responding",
   "resolved",
@@ -40,7 +40,7 @@ const sosAlertSchema = new Schema<SOSAlertRecord>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
     location: { type: sosLocationSchema, default: undefined },
-    status: { type: String, enum: SOS_STATUSES, default: "pending", required: true },
+    status: { type: String, enum: SOS_STATUSES, default: "active", required: true },
     acknowledgedBy: { type: Schema.Types.ObjectId, ref: "User" },
     adminNote: { type: String, trim: true, maxlength: 500 },
     resolvedAt: Date,

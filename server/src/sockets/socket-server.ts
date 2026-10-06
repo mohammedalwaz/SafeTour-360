@@ -15,7 +15,7 @@ interface SocketIdentity {
 export function attachSocketServer(server: HttpServer): void {
   socketServer = new Server(server, {
     cors: {
-      origin: env.frontendUrl,
+      origin: env.corsOrigins,
       methods: ["GET", "POST"],
     },
   });
